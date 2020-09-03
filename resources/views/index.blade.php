@@ -2,7 +2,7 @@
 
 @push('styles')
     <style>
-        @media (min-width: 768px) {
+        @media (min-width: 960px) {
             .home_banner_area .slide-item {
                 background-size: 59% 100% !important;
             }
@@ -15,7 +15,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-align: center !important;
-            font-size: 60px;
+            font-size: 50px;
+        }
+        .travel_category .container-fluid::after,
+        .latest_blog_post .container-fluid::after,
+        .single-popular-post {
+            background-color: #000000dc !important;
         }
     </style>
 @endpush
@@ -308,7 +313,7 @@
 				<div class="offset-lg-7 col-lg-4">
 					<div class="blog-meta bottom d-flex justify-content-end align-items-center">
 						<div>
-							<a class="read_more" href="#">Load More Posts</a>
+							<a class="read_more text-white" href="#">Semua Berita</a>
 						</div>
 					</div>
 				</div>
@@ -409,11 +414,11 @@
 						</div>
 						<div class="desc">
 							<h4>
-								<a href="#">Waterfall Mountain Visit</a>
+								<a href="#" class="text-white">Waterfall Mountain Visit</a>
 							</h4>
 							<div class="blog-meta d-flex justify-content-between align-items-center flex-wrap">
 								<div class="meta">
-									<a href="#">
+									<a href="#" class="text-white-50">
 										<span class="icon fa fa-calendar"></span> March 14, 2018
 										<span class="icon fa fa-comments"></span> 05
 									</a>
