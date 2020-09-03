@@ -1,0 +1,72 @@
+@extends('dashboard.templates.master')
+
+@section('content')
+
+@if (session('status'))
+    <div class="alert alert-success" role="alert">
+        {{ session('status') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Data Post</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Image</th>
+                      <th>Title</th>
+                      <th>Author</th>
+                      <th>Categories</th>
+                      {{-- <th class="text-center"><i class="fa fa-comments"></i></th> --}}
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Option</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      @foreach ($post as $m)
+                          <tr>
+                              <td>{{$loop->iteration}}</td>
+                              <td>
+                                <img src="{{asset($m->image)}}" alt="" width="50">
+                              </td>
+                              <td>{{$m->title}}</td>
+                              <td>{{$m->user->name}}</td>
+                              <td>{{$m->category->slug}}</td>
+                              <td>{{$m->created_at}}</td>
+                              {{-- <td>{{$m->created_at}}</td> --}}
+                              <td>{!!$m->status == 'public' ? '<span class="badge badge-success">Public</span>' : '<span class="badge badge-danger">Pending</span>'!!}</td>
+                              <td class="d-flex justify-content-center">
+                                @if (Helper::permission()->edit == 1)
+                                    <a href="{{Helper::permission()->url . '/' . $m->id . '/edit'}}" class="btn btn-sm btn-primary btn-circle mr-2">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                @endif
+                                @if (Helper::permission()->delete == 1)
+                                    <form action="{{Helper::permission()->url . '/' . $m->id}}" method="POST">
+                                        @method('delete')
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger btn-circle"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                @endif
+                              </td>
+                          </tr>
+                      @endforeach
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
