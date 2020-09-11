@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'FrontendController@index');
+Route::get('/{category}/{slug}', 'FrontendController@detail');
 
 Auth::routes();
 

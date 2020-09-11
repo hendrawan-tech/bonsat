@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="description" content="{{$general->title}} {{$general->tagline}}" />
-    <meta name="og:title" content="{{$general->title}}" />
-    <meta name="og:description" content="{{$general->title}} {{$general->tagline}}" />
+    <meta name="description" content="{{$general->title}} {!! substr($detail->description, 0, 100) . '...' !!}" />
+    <meta name="og:title" content="{{$general->title}} {{$detail->title}}" />
+    <meta name="og:description" content="{{$general->title}} {!! substr($detail->description, 0, 100) . '...' !!}" />
     <meta name="og:url" content="https://bondowosomelesat.com" />
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $general->title }} - {{ $general->tagline }}</title>
+    <title>{{$general->title}} - {{$detail->title}}</title>
     <link rel="icon" href="{{asset($general->logo)}}" sizes="16x16" type="image/png">
     
     <!-- Scripts -->
@@ -59,21 +59,23 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 						<ul class="nav navbar-nav menu_nav justify-content-center mx-auto">
-							<li class="nav-item">
-								<a class="nav-link" href="/">Beranda</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/wisata">Wisata</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/galeri">Galeri</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/kuliner">Kuliner</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="/berita">Berita</a>
-							</li>
+							<ul class="nav navbar-nav menu_nav justify-content-center mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/">Beranda</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/wisata">Wisata</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/galeri">Galeri</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/kuliner">Kuliner</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/berita">Berita</a>
+                                </li>
+                            </ul>
 						</ul>
 						<ul class="nav navbar-nav ml-auto search">
                             <li class="nav-item d-flex align-items-center mr-10">
@@ -96,9 +98,9 @@
 	</header>
 	<!--================ Header Menu Area =================-->
     
-	@yield('content')
-	
-	<!--================ start footer Area  =================-->
+    @yield('content')
+
+    <!--================ start footer Area  =================-->
 	<footer class="footer-area section-gap">
 		<div class="container">
 			<div class="single-footer-widget footer_middle">
